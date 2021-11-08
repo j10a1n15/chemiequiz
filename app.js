@@ -91,6 +91,6 @@ app.use("/static", express.static('./static/'));
 
 wait(1000)
 
-app.listen(80, function () {
+app.listen(80, "localhost", function () {
  console.log('Example app listening on port 80!');
 });
