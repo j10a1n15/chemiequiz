@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <meta http-equiv="X-UA-Compatible" content="ie=edge">
+ <title>Chemie Quiz</title>
+ <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"> </script>
+
+ <script>
+  var runde = 1
+
+  $.getJSON('../static/quiz.json', function (json) {
+
+   document.getElementById("json").textContent = JSON.stringify(json[runde].frage);
+   document.getElementById("tip").textContent = JSON.stringify("Tipp: " + json[runde].tipp);
+   document.getElementById("ende").style.display = "none";
+
+   var arr = [], length;
+   for (key in json) {
+    arr.push(key);
+   }
+   length = arr.length;
+
+   if (runde == length + 1) {
+    document.getElementById("json").style.display = "none";
+    document.getElementById("tip").style.display = "none";
+    document.getElementById("ende").style.display = "block";
+   }
+
+   //Checkt wenn gedrückt wird
+   document.getElementById("submit_").onclick = function () {
+    var myInput = document.getElementById("input").value;
+    if (myInput.toLowerCase() == json[runde].antwort.toLowerCase()) {
+     document.getElementById('input').value = ''
+     alert("Richtig!");
+     runde++
+
+     //Check if over
+     if (runde === length + 1) {
+      document.getElementById("json").style.display = "none";
+      document.getElementById("tip").style.display = "none";
+      document.getElementById("input").style.display = "none";
+      document.getElementById("submit_").style.display = "none";
+      return document.getElementById("ende").style.display = "block";
+     }
+
+     document.getElementById("json").textContent = JSON.stringify(json[runde].frage);
+     document.getElementById("tip").textContent = JSON.stringify("Tipp: " + json[runde].tipp);
+    } else if (myInput) {
+     alert("Leider falsch!")
+    }
+   }
+  })
+ </script>
+
+</head>
+
+<body style="background-color:grey;">
+ <center>
+  <pre id="json"></preid></pre>
+  <pre id="tip"></preid></pre>
+  <form>
+   <input type="text" id="input" placeholder="Antwort">
+   <input id="submit_" type="button" value="Submit">
+  </form>
+  <p style="font-size:24px" id="ende">Ihr habt es geschafft! Herzlichen Glückwunsch!</p>
+ </center>
+</body>
+
+</html>

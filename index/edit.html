@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <meta http-equiv="X-UA-Compatible" content="ie=edge">
+ <title>Chemie Quiz</title>
+ <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"> </script>
+
+ <script>
+  $.getJSON('../static/quiz.json', function (json) {
+
+   document.getElementById("check").addEventListener("click", function () {
+    const numqueanstipp = json[document.getElementById("num").value]
+
+    console.log(numqueanstipp)
+
+    if (!numqueanstipp) return
+
+    let text1 = `Frage: ${numqueanstipp.frage}`
+    let text2 = `Antwort: ${numqueanstipp.antwort}`
+    let text3 = `Tipp: ${numqueanstipp.tipp}`
+
+    document.getElementById("fra").textContent = text1
+    document.getElementById("ant").textContent = text2
+    document.getElementById("tip").textContent = text3
+    document.getElementById("que").value = json[document.getElementById("num").value].frage
+    document.getElementById("ans").value = json[document.getElementById("num").value].antwort
+    document.getElementById("tipp").value = json[document.getElementById("num").value].tipp
+   })
+  })
+ </script>
+
+
+</head>
+
+<body style="background-color:grey;">
+
+ <header style="background-color: white; padding: 5px 5px 5px 5px;">
+  <ul>
+   <li style="display:inline-block;">
+     <div style="padding: 0px 10px 0px 10px;"><a href="./">Quiz</a></div>
+   </li>
+   <li style="display:inline-block;">
+     <div style="padding: 0px 10px 0px 10px;"><a href="./view">Fragen anschauen</a></div>
+   </li>
+   <li style="display:inline-block;">
+     <div style="padding: 0px 10px 0px 10px;"><a href="./add">Fragen hinzufügen</a></div>
+   </li>
+ </ul>
+ </header>
+
+ <hr>
+
+ <center>
+  <form action="">
+   <label for="num">Nummer der Frage:</label>
+   <input type="text" id="num" name="num">
+   <button id="check" type="button">Nummer eingeben</button><br><br>
+   <label for="que">Frage:</label>
+   <input type="text" id="que" name="que"><br><br>
+   <label for="ans">Antwort:</label>
+   <input type="text" id="ans" name="ans"><br><br>
+   <label for="ans">Tipp:</label>
+   <input type="text" id="tipp" name="tipp"><br><br>
+   <input type="submit" value="Submit">
+
+
+  </form>
+  <pre id="fra"></preid></pre>
+  <pre id="ant"></preid></pre>
+  <pre id="tip"></preid></pre>
+ </center>
+</body>
+
+</html>

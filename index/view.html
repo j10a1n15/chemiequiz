@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Chemie Quiz</title>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"> </script>
+
+    <script>
+        var runde = 1
+
+        $.getJSON('../static/quiz.json', function (json) {
+
+            var arr = [], length;
+            for (key in json) {
+                arr.push(key);
+            }
+            length = arr.length;
+
+            var strHTML = '';
+            for (key in json) {
+                var item = json[key]
+                console.log(item)
+                strHTML += `<div class="Results-item">
+        <hr>
+            <h4 class="Results-itemName">FrageNummer: ${key}</h4>
+            <p class="Results-itemDetails">Frage: <ins>${item.frage}</ins> - Antwort: <ins>${item.antwort}</ins></p>
+            </div>`;
+            }
+            document.getElementById('container').insertAdjacentHTML('beforeend', strHTML);
+        })
+    </script>
+
+</head>
+
+<body style="background-color:grey;">
+
+    <header style="background-color: white; padding: 5px 5px 5px 5px;">
+        <ul>
+            <li style="display:inline-block;">
+              <div style="padding: 0px 10px 0px 10px;"><a href="./">Quiz</a></div>
+            </li>
+            <li style="display:inline-block;">
+              <div style="padding: 0px 10px 0px 10px;"><a href="./add">Fragen hinzufügen</a></div>
+            </li>
+            <li style="display:inline-block;">
+              <div style="padding: 0px 10px 0px 10px;"><a href="./edit">Fragen editieren</a></div>
+            </li>
+          </ul>
+    </header>
+
+    <center>
+        <div id="container"></div>
+        <hr>
+    </center>
+</body>
+
+</html>

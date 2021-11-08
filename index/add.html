@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Chemie Quiz</title>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"> </script>
+
+  <script>
+
+    $.getJSON('../static/quiz.json', function (json) {
+
+      var arr = [], length;
+      for (key in json) {
+        arr.push(key);
+      }
+      length = arr.length;
+
+      document.getElementById("frage").textContent = JSON.stringify(`Frage ${length + 1}`);
+    })
+
+  </script>
+
+  <style>
+    #footer {
+      position: fixed;
+      padding: 10px 10px 10px 10px;
+      bottom: 0;
+      width: 100%;
+      /* Height of the footer*/
+      height: 60px;
+    }
+  </style>
+
+</head>
+
+<body style="background-color:grey;">
+
+  <header style="background-color: white; padding: 5px 5px 5px 5px;">
+    <ul>
+      <li style="display:inline-block;">
+        <div style="padding: 0px 10px 0px 10px;"><a href="./">Quiz</a></div>
+      </li>
+      <li style="display:inline-block;">
+        <div style="padding: 0px 10px 0px 10px;"><a href="./view">Fragen anschauen</a></div>
+      </li>
+      <li style="display:inline-block;">
+        <div style="padding: 0px 10px 0px 10px;"><a href="./edit">Fragen editieren</a></div>
+      </li>
+    </ul>
+  </header>
+
+  <center>
+    <pre id="frage"></preid></pre>
+
+    <form action="">
+      <label for="que">Frage:</label>
+      <input type="text" id="que" name="que"><br><br>
+      <label for="ans">Antwort:</label>
+      <input type="text" id="ans" name="ans"><br><br>
+      <label for="ans">Tipp:</label>
+      <input type="text" id="tipp" name="tipp"><br><br>
+      <input type="submit" value="Submit">
+    </form>
+    <p>Hier kann man eine neue Frage hinzufügen.<br>Oben sieht man, welche Fragennummer hinzugefügt wird.<br>Bei dem
+      <strong>Fragen</strong>-Feld muss die Frage, die die Schüler beantworten sollen, eingegeben werden<br>Bei dem
+      <strong>Antwort</strong>-Abteil muss die passende Antwort zur Frage eingegeben werden.<br>Bei dem
+      <strong>Tipp</strong>-Abteil muss der Tipp für diese Frage und Antwort eingegeben werden.
+    </p>
+  </center>
+
+
+  <div id="footer">
+    <form action="">
+      <input type="text" id="clear" name="clear">
+      <input id="clear" type="submit" value="Clear Json">
+      <p>Um die Json (Datenbank für die Fragen) zu löschen, bitte etwas in das Feld eingeben, und dann den Knopf daneben
+        drücken.</p>
+    </form>
+  </div>
+</body>
+
+</html>
