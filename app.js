@@ -13,10 +13,12 @@ app.get('/add', async ({ query }, response) => {
  const { que, ans, tipp } = query
  const { clear } = query
 
+ var json = {}
+
  if (que && ans && tipp) {
   try {
    const fs = require("fs")
-   let json = {}
+   json = {}
    json = require("./static/quiz.json")
 
    var arr = [], length;
@@ -39,7 +41,7 @@ app.get('/add', async ({ query }, response) => {
  if (clear) {
   try {
    const fs = require("fs")
-   var json = {}
+   json = {}
    json = require("./static/quiz.json")
 
    json = {}
