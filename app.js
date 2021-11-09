@@ -2,7 +2,7 @@ const wait = require('util').promisify(setTimeout);
 const express = require('express');
 const app = express();
 
-const PORT = 3000
+const PORT = 80
 
 app.get('', ({ query }, response) => {
  return response.sendFile('index/index.html', { root: '.' });
