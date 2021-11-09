@@ -2,6 +2,8 @@ const wait = require('util').promisify(setTimeout);
 const express = require('express');
 const app = express();
 
+const PORT = 3000
+
 wait(1000)
 
 app.get('/', async ({ query }, response) => {
@@ -91,6 +93,6 @@ app.use("/static", express.static('./static/'));
 
 wait(1000)
 
-app.listen(80, "localhost", function () {
- console.log('Example app listening on port 80!');
+app.listen(PORT, () => {
+ console.log(`Example app listening on port ${PORT}!`);
 });
