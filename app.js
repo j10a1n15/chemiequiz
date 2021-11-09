@@ -4,11 +4,11 @@ const app = express();
 
 const PORT = 3000
 
-app.get('/', async ({ query }, response) => {
+app.get('', ({ query }, response) => {
  return response.sendFile('index/index.html', { root: '.' });
 });
 
-app.get('/add', async ({ query }, response) => {
+app.get('/add', ({ query }, response) => {
 
  const { que, ans, tipp } = query
  const { clear } = query
@@ -51,11 +51,11 @@ app.get('/add', async ({ query }, response) => {
  return response.sendFile('index/add.html', { root: '.' });
 });
 
-app.get('/view', async ({ query }, response) => {
+app.get('/view', ({ query }, response) => {
  return response.sendFile('index/view.html', { root: '.' });
 });
 
-app.get('/edit', async ({ query }, response) => {
+app.get('/edit', ({ query }, response) => {
 
  const { num, que, ans, tipp } = query
 
