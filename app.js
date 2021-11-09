@@ -4,7 +4,7 @@ const app = express();
 
 const PORT = 80
 
-app.get('', ({ query }, response) => {
+app.get('/', ({ query }, response) => {
  return response.sendFile('index/index.html', { root: '.' });
 });
 
