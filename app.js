@@ -83,6 +83,6 @@ app.get('/edit', ({ query }, response) => {
 
 app.use("/static", express.static('./static/'));
 
-app.listen(PORT, () => {
+app.listen(PORT, "127.0.0.1", () => {
  console.log(`Example app listening on port ${PORT}!`);
 });
