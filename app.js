@@ -4,12 +4,7 @@ const app = express();
 
 const PORT = process.env.PORT || 3000
 
-
-app.get("", (req, res) => {
- res.send("Hello World")
-})
-
-/*app.get('/', async ({ query }, response) => {
+app.get('/', async ({ query }, response) => {
  return response.sendFile('index/index.html', { root: '.' });
 });
 
@@ -86,7 +81,7 @@ app.get('/edit', async ({ query }, response) => {
  return response.sendFile('index/edit.html', { root: '.' });
 });
 
-app.use("/static", express.static('./static/'));*/
+app.use("/static", express.static('./static/'));
 
 app.listen(PORT, () => {
  console.log(`Example app listening on port ${PORT}!`);
