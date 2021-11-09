@@ -1,8 +1,10 @@
+const wait = require('util').promisify(setTimeout);
 const express = require('express');
 const app = express();
 
+const PORT = 80
 
-app.get('/', ({ query }, response) => {
+app.get('', ({ query }, response) => {
  return response.sendFile('index/index.html', { root: '.' });
 });
 
@@ -81,6 +83,6 @@ app.get('/edit', ({ query }, response) => {
 
 app.use("/static", express.static('./static/'));
 
-app.listen(80, "127.0.0.1", function(){
- console.log(`Example app listening on port 80!`);
+app.listen(PORT, "127.0.0.1", () => {
+ console.log(`Example app listening on port ${PORT}!`);
 });
