@@ -2,13 +2,14 @@ const wait = require('util').promisify(setTimeout);
 const express = require('express');
 const app = express();
 
-const PORT = 80
+const PORT = 3000
 
-app.get('', ({ query }, response) => {
+
+app.get('/', async ({ query }, response) => {
  return response.sendFile('index/index.html', { root: '.' });
 });
 
-app.get('/add', ({ query }, response) => {
+app.get('/add', async ({ query }, response) => {
 
  const { que, ans, tipp } = query
  const { clear } = query
@@ -51,11 +52,11 @@ app.get('/add', ({ query }, response) => {
  return response.sendFile('index/add.html', { root: '.' });
 });
 
-app.get('/view', ({ query }, response) => {
+app.get('/view', async ({ query }, response) => {
  return response.sendFile('index/view.html', { root: '.' });
 });
 
-app.get('/edit', ({ query }, response) => {
+app.get('/edit', async ({ query }, response) => {
 
  const { num, que, ans, tipp } = query
 
@@ -83,6 +84,6 @@ app.get('/edit', ({ query }, response) => {
 
 app.use("/static", express.static('./static/'));
 
-app.listen(PORT, "127.0.0.1", () => {
+app.listen(PORT, () => {
  console.log(`Example app listening on port ${PORT}!`);
 });
