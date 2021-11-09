@@ -4,13 +4,9 @@ const app = express();
 
 const PORT = 3000
 
-wait(1000)
-
 app.get('/', async ({ query }, response) => {
  return response.sendFile('index/index.html', { root: '.' });
 });
-
-wait(1000)
 
 app.get('/add', async ({ query }, response) => {
 
@@ -55,8 +51,6 @@ app.get('/add', async ({ query }, response) => {
  return response.sendFile('index/add.html', { root: '.' });
 });
 
-wait(1000)
-
 app.get('/view', async ({ query }, response) => {
  return response.sendFile('index/view.html', { root: '.' });
 });
@@ -87,11 +81,7 @@ app.get('/edit', async ({ query }, response) => {
  return response.sendFile('index/edit.html', { root: '.' });
 });
 
-wait(1000)
-
 app.use("/static", express.static('./static/'));
-
-wait(1000)
 
 app.listen(PORT, () => {
  console.log(`Example app listening on port ${PORT}!`);
