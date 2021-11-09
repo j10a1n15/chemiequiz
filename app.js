@@ -16,7 +16,7 @@ app.get('/add', async ({ query }, response) => {
  if (que && ans && tipp) {
   try {
    const fs = require("fs")
-   let json = ""
+   let json = {}
    json = require("./static/quiz.json")
 
    var arr = [], length;
@@ -39,7 +39,8 @@ app.get('/add', async ({ query }, response) => {
  if (clear) {
   try {
    const fs = require("fs")
-   var json = require("./static/quiz.json")
+   var json = {}
+   json = require("./static/quiz.json")
 
    json = {}
    fs.writeFileSync("./static/quiz.json", JSON.stringify(json))
@@ -62,7 +63,7 @@ app.get('/edit', async ({ query }, response) => {
  if (num && que && ans && tipp) {
   try {
    const fs = require("fs")
-   let json = ""
+   let json = {}
    json = require("./static/quiz.json")
 
    if(!json[num]) return
